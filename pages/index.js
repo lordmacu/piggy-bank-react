@@ -22,7 +22,7 @@ export default function Home() {
   );
   let w3 = new Web3(url);
 
-  let contract = new w3.eth.Contract(abi, "0x3c5e41Ea3dECb88dFCe1c3ba97464AEa68ec3634")
+  let contract = new w3.eth.Contract(abi, "0x8233e1cd05e1b6631c05febe854bc2a6afde38dd")
 
   const depositValue = async (value) => {
 
