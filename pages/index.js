@@ -67,6 +67,7 @@ export default function Home() {
   const balance = async () => {
 
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const eth_sendTransaction = await window.ethereum.request({ method: 'eth_sendTransaction' });
  
     contract.methods.getBalance().call({ from: accounts[0]},
       function (error, result) {
