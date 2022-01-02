@@ -22,6 +22,14 @@
   border-radius: 30px;
   padding: 20px;
 
+  form {
+    span {
+      color: red;
+      background-color: white;
+      border-radius: 10px;
+    }
+  }
+
   label {
     color: white;
   }

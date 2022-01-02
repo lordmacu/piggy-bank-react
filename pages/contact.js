@@ -5,17 +5,34 @@ import { faAngleLeft, faMoneyCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import swal from 'sweetalert';
 import Router from 'next/router';
+import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 
 export default function Contact() {
+ 
+    const { register, formState: { errors }, handleSubmit } = useForm();
+ 
 
-    const [name, setName] = useState("")
-    const [subject, setSubject] = useState("")
-    const [email, setEmail] = useState("")
+    function onSubmit(data) {
+        
+        axios({
+            method: 'post',
+            url: 'https://apipiggy.cristiangarcia.co/email',
+            data: data
+        })
+            .then(() => {
+                swal("Se ha enviado el email correctamente");
+                document.getElementById("formContact").reset();
 
-    useEffect(() => {
-      
-    }, [])
+            }).catch(function (error) {
+                swal("Error al envio del email");
+            }); ;
+       
+        return false;
+    }
+
+ 
 
 
     return (
@@ -32,24 +49,44 @@ export default function Contact() {
 
    
                     <div className="mb-3 row">
-                        <form>
+                    <form id='formContact' onSubmit={handleSubmit(onSubmit)}>
                             <div className="mb-3">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Nombre</label>
-                                <input required type="text" className="form-control" placeholder="Ingresa tu nombre" onChange={(event) => {
-                                    setName(event.target.value)
-                                }}/>
+                                <label htmlFor="name" className="form-label">Nombre</label>
+                            <input
+                                id='name'
+                                {...register("name", {
+                                required: "Required",
+                                message: "Ingrese un nombre valido"
+                                })}
+                                type="text" className="form-control" placeholder="Ingresa tu nombre" />
+                            {errors.name ? <span>{errors.name.message}</span> : ""} 
+
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                                <input required type="email" className="form-control" placeholder="Ingresa tu email" onChange={(event) => {
-                                    setEmail(event.target.value)
-                                }} />
+                                <label htmlFor="email" className="form-label">Email</label>
+                            <input
+                                {...register("email", {
+                                required: "Required",
+                                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                                message: "Ingrese un email válido"
+                                })} 
+                                id='email'
+                                type="email" className="form-control" placeholder="Ingresa tu email" />
+                         
+                            {errors.email ? <span>{errors.email.message}</span> : "" } 
+
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleFormControlInput1" className="form-label">Asunto</label>
-                                <textarea required className="form-control" placeholder="Ingresa el asunto" onChange={(event) => {
-                                    setSubject(event.target.value)
-                                }}  ></textarea>
+                                <label htmlFor="subject" className="form-label">Asunto</label>
+                            <textarea
+                                {...register("subject", {
+                                required: "Required",
+                                message: "Ingrese un asunto valido"
+                                })}
+                                id='subject'
+                                className="form-control" placeholder="Ingresa el asunto"    ></textarea>
+                            {errors.subject ? <span>{errors.subject.message}</span> : ""} 
+
                             </div>
                             <div className="mb-3 d-grid gap-2">
                                 <button className='btn btn-light ' type='submit'>Enviar</button>

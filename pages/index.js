@@ -27,11 +27,6 @@ export default function Home() {
   const depositValue = async (value) => {
 
     var accountsFromMetaMask = await window.ethereum.send('eth_requestAccounts');
-    console.log("sadf asd ", accountsFromMetaMask["result"][0]);
-
-   // const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-    //console.log("aquiii estoy ", accounts);
 
     contract.methods.deposit(parseInt(new Date().getTime() / 1000)).send({ from: accountsFromMetaMask["result"][0], value: w3.utils.toWei(value, 'ether'), gas: 3000000 },
       function (error, result) {
