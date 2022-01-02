@@ -7,7 +7,6 @@ import swal from 'sweetalert';
 import Router from 'next/router';
 
 var abi = [{ "inputs": [], "stateMutability": "payable", "type": "constructor" }, { "inputs": [{ "internalType": "uint256", "name": "time", "type": "uint256" }], "name": "deposit", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "name": "depositBaks", "outputs": [{ "internalType": "uint256", "name": "date", "type": "uint256" }, { "internalType": "uint256", "name": "value", "type": "uint256" }, { "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "uint256", "name": "typeTransaction", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getDeposits", "outputs": [{ "components": [{ "internalType": "uint256", "name": "date", "type": "uint256" }, { "internalType": "uint256", "name": "value", "type": "uint256" }, { "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "uint256", "name": "typeTransaction", "type": "uint256" }], "internalType": "struct PiggyBank.Deposit[]", "name": "", "type": "tuple[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "transactions", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "amount", "type": "uint256" }, { "internalType": "uint256", "name": "time", "type": "uint256" }], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" }]
-
 export default function Home() {
 
   let Web3 = require('web3');
@@ -19,7 +18,7 @@ export default function Home() {
 
  
   const url = new Web3.providers.HttpProvider(
-    'https://ropsten.infura.io/v3/4c3357c4588344919337836ff9cd1934'
+    'https://rinkeby.infura.io/v3/4c3357c4588344919337836ff9cd1934'
   );
   let w3 = new Web3(url);
 
