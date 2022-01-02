@@ -12,8 +12,7 @@ var abi = [{ "inputs": [], "stateMutability": "payable", "type": "constructor" }
 export default function Home() {
 
   let Web3 = require('web3');
-  var PiggyBank = require("../../build/contracts/PiggyBank.json");
- 
+  
   const [balancePiggy, setBalancePiggy] = useState(0)
   const [balancePiggyWei, setBalancePiggyWei] = useState(0)
   const [depositsPiggy, setDepositsPiggy] = useState([])
