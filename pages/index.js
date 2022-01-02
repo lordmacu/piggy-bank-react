@@ -34,7 +34,7 @@ export default function Home() {
 
     //console.log("aquiii estoy ", accounts);
 
-    contract.methods.deposit(parseInt(new Date().getTime() / 1000)).sendAsync({ from: accountsFromMetaMask["result"][0], value: w3.utils.toWei(value, 'ether'), gas: 3000000 },
+    contract.methods.deposit(parseInt(new Date().getTime() / 1000)).send({ from: accountsFromMetaMask["result"][0], value: w3.utils.toWei(value, 'ether'), gas: 3000000 },
       function (error, result) {
         if (error) {
           console.log("error:" + error);
