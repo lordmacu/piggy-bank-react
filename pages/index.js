@@ -20,7 +20,7 @@ export default function Home() {
 
  
   const url = new Web3.providers.HttpProvider(
-    'wss://ropsten.infura.io/ws/v3/4c3357c4588344919337836ff9cd1934'
+    'https://mainnet.infura.io/v3/4c3357c4588344919337836ff9cd1934'
   );
   let w3 = new Web3(url);
 
